@@ -17,6 +17,7 @@ class MyFrame extends JFrame implements ActionListener {
     JButton save,print;
 
 
+
     public MyFrame() {
 
         setTitle("Registration Form");
@@ -26,7 +27,6 @@ class MyFrame extends JFrame implements ActionListener {
         setLayout(null);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         getContentPane().setBackground(Color.YELLOW);
-
 
 
 
@@ -160,12 +160,17 @@ class MyFrame extends JFrame implements ActionListener {
         obj.put("Batch: ", batch.getText());
         obj.put("Section: ", section.getText());
 
+
+
         if(male.isSelected()){
             obj.put("gender",male.getText());
 
         }else {
             obj.put("gender",female.getText());
-        }if(e.getSource()==save){
+        } obj.put("Address",  address.getSelectedText());
+        obj.put("Country",country_cb.getSelectedItem());
+
+        if(e.getSource()==save){
 
             try {
                 Writer writer = new FileWriter("OutPut.json");
@@ -186,17 +191,24 @@ class MyFrame extends JFrame implements ActionListener {
             } catch (Exception ie) {
                 ie.printStackTrace();
             }
+            try {
+
+
             if(matric.isSelected())
-                obj.put("Qualification",matric.getSelectedObjects());
+                obj.put("Qualification",matric.getText());
             else if (intermediate.isSelected()) {
-                obj.put("Qualification",intermediate.getSelectedObjects());
+                obj.put("Qualification",intermediate.getText());
 
             } else if (graduate.isSelected()) {
-                obj.put("Qualification",graduate.getSelectedObjects());
+                obj.put("Qualification",graduate.getText());
 
             }else {
-                obj.put("Qualification",P_graduate.getSelectedObjects());
+                obj.put("Qualification",P_graduate.getText());
+            }}catch (Exception r){
+
             }
+
+
         }
         else if(e.getSource()==print) {
             setTitle("Information Form");
@@ -204,25 +216,35 @@ class MyFrame extends JFrame implements ActionListener {
             setLayout(null);
             setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
             getContentPane().setBackground(Color.ORANGE);
-            System.out.println(name.getText());
-            System.out.println(RollNo.getText());
-            System.out.println(batch.getText());
-            System.out.println(section.getText());
+            name.getText();
+            RollNo.getText();
+            batch.getText();
+            section.getText();
+            country_cb.getSelectedObjects();
             if (male.isSelected())
-                System.out.println("Male");
+                male.getText();
             else
-                System.out.println("Female");
+                female.getText();
         }
-        if(matric.isSelected())
-            System.out.println("Matric");
-        else if (intermediate.isSelected()) {
-            System.out.println("Intermediate");
+        try {
 
-        }else if(graduate.isSelected()){
-            System.out.println("Graduate");
-        }else{
-            System.out.println("PostGraduate");
+
+            if (matric.isSelected())
+                matric.getText();
+            else if (intermediate.isSelected()) {
+                intermediate.getText();
+
+            } else if (graduate.isSelected()) {
+                graduate.getText();
+            } else {
+                P_graduate.getText();
+            }
+        }catch (Exception f){
+
         }
+        address.getSelectedText();
+        country_cb.getSelectedItem();
+
 
 
     }
